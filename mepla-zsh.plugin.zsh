@@ -1,6 +1,4 @@
-# Aliases
-# (sorted alphabetically)
-#
+######################## GIT ########################
 
 alias g='git'
 
@@ -46,4 +44,6 @@ export function gcp() {
   fi
 }
 
+######################## FLUTTER #######################
 
+alias fbr='flutter pub run build_runner build --delete-conflicting-outputs'
