@@ -54,21 +54,21 @@ alias fbr='flutter pub run build_runner build --delete-conflicting-outputs'
 
 
 export function fcm() {
-class_body='
+class_body="
 import 'package:json_annotation/json_annotation.dart';
-part '_FILENAME_.g.dart';
+part '%FILENAME%.g.dart';
 
 @JsonSerializable()
-class _CLASSNAME_ {
+class %CLASSNAME%  {
   final String id;
   final String name;
 
-  _CLASSNAME_({this.id = "", this.name = ""});
+  %CLASSNAME% ({this.id = "", this.name = ""});
 
-  factory _CLASSNAME_.fromJson(Map<String, dynamic> json) => _$_CLASSNAME_FromJson(json);
-  Map<String, dynamic> toJson() => _$_CLASSNAME_ToJson(this);
+  factory %CLASSNAME% .fromJson(Map<String, dynamic> json) => _$%CLASSNAME% FromJson(json);
+  Map<String, dynamic> toJson() => _$%CLASSNAME% ToJson(this);
 }
-'
+"
 
-echo "$class_body" | sed -e "s/_FILENAME_/$1/g" | sed -e "s/_CLASSNAME_/$2/g" 
+echo "$class_body" | sed -e "s/%FILENAME%/$1/g" | sed -e "s/%CLASSNAME% /$2/g" > $1.dart 
 }
