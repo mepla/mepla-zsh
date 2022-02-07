@@ -48,6 +48,10 @@ export function gcp() {
   fi
 }
 
+export func ghh() {
+  cat $ZSH/plugins/mepla-zsh/mepla-zsh.plugin.zsh | grep alias | grep $1 --color
+}
+
 ######################## FLUTTER #######################
 
 alias fbr='flutter pub run build_runner build --delete-conflicting-outputs'
@@ -59,16 +63,19 @@ import 'package:json_annotation/json_annotation.dart';
 part '%FILENAME%.g.dart';
 
 @JsonSerializable()
-class %CLASSNAME%  {
+class %CLASSNAME% {
   final String id;
   final String name;
 
-  %CLASSNAME% ({this.id = "", this.name = ""});
+  %CLASSNAME%({
+    required this.id,
+    required this.name,
+  });
 
-  factory %CLASSNAME% .fromJson(Map<String, dynamic> json) => _$%CLASSNAME% FromJson(json);
-  Map<String, dynamic> toJson() => _$%CLASSNAME% ToJson(this);
+  factory %CLASSNAME% .fromJson(Map<String, dynamic> json) => _$%CLASSNAME%FromJson(json);
+  Map<String, dynamic> toJson() => _$%CLASSNAME%ToJson(this);
 }
 "
 
-echo "$class_body" | sed -e "s/%FILENAME%/$1/g" | sed -e "s/%CLASSNAME% /$2/g" > $1.dart 
+echo "$class_body" | sed -e "s/%FILENAME%/$1/g" | sed -e "s/%CLASSNAME%/$2/g" > $1.dart 
 }
